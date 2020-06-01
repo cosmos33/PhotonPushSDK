@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "CallbackMessage.h"
-
+#import <UserNotifications/UserNotifications.h>
 
 //SDK版本
 #define SDK_VERSION 10000
@@ -26,7 +27,7 @@ typedef NS_ENUM(NSInteger,MOPushServerType) {
 };
 
 
-
+API_AVAILABLE(ios(10.0))
 @interface MoPushManager : NSObject
 
 @property (nonatomic,assign) SEL mCommandListener;
@@ -34,8 +35,13 @@ typedef NS_ENUM(NSInteger,MOPushServerType) {
 @property (nonatomic,strong) CallbackMessage *callbackMessage;
 @property (nonatomic, strong, readonly) dispatch_queue_t queue;
 @property (nonatomic, assign)NSInteger  insLog;
+@property (nonatomic, strong,readonly)id<UIApplicationDelegate> appDelegate;
+@property (nonatomic, strong,readonly)id<UNUserNotificationCenterDelegate> centerDelegate;
 
 + (void)setServerType:(MOPushServerType)serverType;
+
++ (void)setAppDelegate:(id<UIApplicationDelegate> _Nullable)appDelegate;
++ (void)setNotiCenterDelegate:(id<UNUserNotificationCenterDelegate> _Nullable)centerDelegate;
 /**
  初始化push sdk
  @paramter appID 在服务端申请获得的id
