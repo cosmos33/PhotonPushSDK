@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger,MOPushServerType) {
 };
 
 
-API_AVAILABLE(ios(10.0))
 @interface MoPushManager : NSObject
 
 @property (nonatomic,assign) SEL mCommandListener;

@@ -36,11 +36,11 @@ typedef NS_ENUM(NSInteger, COMMAND) {
 /**
  注册等请求命令名称 比如 reg
  */
-@property (nonatomic, copy) NSString *commandName;
+@property (nonatomic, nullable ,copy) NSString *commandName;
 /**
  注册等请求命令响应的内容，比如token
  */
-@property (nonatomic,copy) NSString * message;
+@property (nonatomic,nullable ,copy) NSString * message;
 
 @end
 
