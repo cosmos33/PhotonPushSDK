@@ -147,6 +147,8 @@ typedef NS_ENUM(NSInteger,MOPushServerType) {
 
 + (void)uploadLog;
 
++(void) shouldConsoleLog:(BOOL)en;
+
 @end
 
 NS_ASSUME_NONNULL_END
