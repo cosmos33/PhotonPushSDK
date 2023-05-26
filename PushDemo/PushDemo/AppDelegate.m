@@ -8,12 +8,9 @@
 
 #import "AppDelegate.h"
 #import <objc/runtime.h>
-#include <pushsdk/MoPushManager.h>
-//#import "NSData+MoPushBase64.h"
-//#import "NSString+MoPushBase64.h"
+#import <pushsdk/MoPushManager.h>
 
-#import <APIEncryption/APIEncryption.h>
-#define APP_ID @"26e61d33cefc4e2cab629715b6aa260f"
+#define APP_ID @"326a7a61d5e8f170957f9bf6591a7c9b"
 
 @interface AppDelegate ()
 
@@ -25,19 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    // 初始化
-    [[APIEncryption shareInstance] registerAPIKeyType:APISecKeyTypeWowoKey  kVersion:2];
-    
     [MoPushManager initSDK: APP_ID];
-    [MoPushManager setBuildStat:MOBuildStat_RELEASE];
-    NSLog(@"RELEASE");
-#ifdef DEBUG
     [MoPushManager setBuildStat:MOBuildStat_DEBUG];
-    NSLog(@"DEBUG");
-#elif INHOUSE
-    [MoPushManager setBuildStat:MOBuildStat_INHOUSE];
-    NSLog(@"INHOUSE");
-#endif
+    [MoPushManager setServerType:MOPushServerTypeInland];
     
     [MoPushManager addCommandListener:@selector(onCommand:) target:self];
     
@@ -46,18 +33,17 @@
 }
 
 - (void) onCommand:(CallbackMessage*) message  {
-    NSLog(@"AppDelegate callback ----->> cmd:%d,  code: %d, message:%@", [message command],[message resultCode], [message message]);
+    NSLog(@"AppDelegate callback ----->> cmd:%d,  code: %d, message:%@", (NSInteger)[message command],[message resultCode], [message message]);
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"操作完成"
-                                  message:[message message]
+                                  message:[message commandName]
                                   delegate:nil
                                   cancelButtonTitle:@"确认"
                                   otherButtonTitles:nil];
         [alertView show];
     });
     
-
 }
 
 
@@ -210,12 +196,12 @@
     }else{
         NSLog(@"IOS 10 点击-本地推送消息 badge: %@ , title: %@ , subtitle: %@ , body: %@ , userInfo: %@ ",badge,title,subtitle,body,userInfo);
     }
-    NSDictionary *aps = [userInfo objectForKey:@"aps"];
-    NSString *alert = [[aps objectForKey:@"alert"] objectForKey:@"body"];
-    if(alert){
-        [self alert:alert];
-    }
-    
+//    NSDictionary *aps = [userInfo objectForKey:@"aps"];
+//    NSString *alert = [[aps objectForKey:@"alert"] objectForKey:@"body"];
+//    if(alert){
+//        [self alert:alert];
+//    }
+//
     // IOS 10 系统要求执行
     completionHandler();
 }

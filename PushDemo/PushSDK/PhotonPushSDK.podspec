@@ -13,12 +13,11 @@ Pod::Spec.new do |s|
   
   s.subspec 'PUSH' do |sp|
     sp.vendored_frameworks = 'Frameworks/pushsdk.framework'
+    s.dependency 'PhotonHTTPDNS'
   end
   
   s.subspec 'MMFile' do |sp|
     sp.vendored_frameworks = 'Frameworks/MMFile.framework'
   end
   
-  s.dependency 'PhotonHTTPDNS'
-
 end

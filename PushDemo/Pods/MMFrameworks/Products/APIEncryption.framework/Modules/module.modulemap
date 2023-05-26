@@ -1,6 +1,0 @@
-framework module APIEncryption {
-  umbrella header "APIEncryption.h"
-
-  export *
-  module * { export * }
-}

@@ -1,11 +1,22 @@
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://git.wemomo.com/ios/Specs.git'
+source 'https://github.com/cosmos33/MMSpecs.git'
+
 platform :ios, '10.0'
 project 'PushDemo'
 target :PushDemo do
-    pod 'PhotonPushSDK','0.0.4'
-    pod 'MMFrameworks/MMFoundation', '2.3.68'
-    pod 'MMFrameworks/MomoCrypto', '2.3.68'
-    pod 'MMFrameworks/APIEncryption', '2.3.68'
-#    pod 'PhotonPushSDK',:path=>'../../../github_project/PhotonPushSDK-iOS/'
+    #使用外部MMFile
+#    pod 'PhotonPushSDK/PUSH',:path=>'PushSDK/'
+#    pod 'MMFile', '0.2.14', :source => 'https://git.wemomo.com/ios/Specs.git'
+
+    #使用默认MMFile
+    pod 'PhotonPushSDK',:path=>'PushSDK/'
+
+    pod 'openssl-lib', :source => 'https://github.com/cosmos33/MMSpecs.git'
+    
+    #对内
+#    pod 'PhotonHTTPDNS', '3.0.8.5', :source => 'https://git.wemomo.com/ios/Specs.git'
+    
+    #对外
+    pod 'PhotonHTTPDNS', :source => 'https://github.com/cosmos33/MMSpecs.git'
 end

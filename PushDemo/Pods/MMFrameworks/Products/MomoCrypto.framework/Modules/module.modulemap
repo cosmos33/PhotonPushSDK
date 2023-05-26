@@ -1,6 +1,0 @@
-framework module MomoCrypto {
-  umbrella header "MomoCrypto.h"
-
-  export *
-  module * { export * }
-}

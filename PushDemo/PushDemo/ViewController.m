@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <pushsdk/MoPushManager.h>
-@interface ViewController ()<UITextFieldDelegate>
+@interface ViewController ()
 @property(nonatomic, strong)UITextField *textFiled;
 @end
 
@@ -20,7 +20,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     UITextField *textFiled = [[UITextField alloc] initWithFrame:CGRectMake(10, 30, 350, 40)];
     textFiled.backgroundColor = [UIColor grayColor];
-    textFiled.delegate = self;
     _textFiled = textFiled;
     [_textFiled setText:@"123456"];
     textFiled.textColor = [UIColor redColor];
@@ -64,11 +63,35 @@
     [unAliasBtn addTarget:self action:@selector(unAlias:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:unAliasBtn];
     
-    UIButton *uploadBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 390, 450, 40)];
+    UIButton *uploadBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 440, 350, 40)];
     [uploadBtn setTitle:@"上传log" forState:UIControlStateNormal];
     uploadBtn.backgroundColor = [UIColor darkGrayColor];
     [uploadBtn addTarget:self action:@selector(uploadLog:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:uploadBtn];
+    
+    UIButton *settag = [[UIButton alloc] initWithFrame:CGRectMake(10,490, 350, 40)];
+    [settag setTitle:@"token绑定标签" forState:UIControlStateNormal];
+    settag.backgroundColor = [UIColor darkGrayColor];
+    [settag addTarget:self action:@selector(setTag:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:settag];
+    
+    UIButton *untag = [[UIButton alloc] initWithFrame:CGRectMake(10, 540, 350, 40)];
+    [untag setTitle:@"token解绑标签" forState:UIControlStateNormal];
+    untag.backgroundColor = [UIColor darkGrayColor];
+    [untag addTarget:self action:@selector(unTag:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:untag];
+    
+    UIButton *settagalias = [[UIButton alloc] initWithFrame:CGRectMake(10,590, 350, 40)];
+    [settagalias setTitle:@"别名绑定标签" forState:UIControlStateNormal];
+    settagalias.backgroundColor = [UIColor darkGrayColor];
+    [settagalias addTarget:self action:@selector(setTagAlias:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:settagalias];
+    
+    UIButton *untagalias = [[UIButton alloc] initWithFrame:CGRectMake(10, 640, 350, 40)];
+    [untag setTitle:@"别名解绑标签" forState:UIControlStateNormal];
+    untag.backgroundColor = [UIColor darkGrayColor];
+    [untag addTarget:self action:@selector(unTagAlias:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:untag];
     
     
     
@@ -77,6 +100,7 @@
 - (void)regiseterWithAlias:(id)sender {
     if (_textFiled.text.length) {
         [MoPushManager registerWithAlias:_textFiled.text];
+         [MoPushManager  setTagWithAlias:_textFiled.text tag:@"123"];
     } else {
         [self alert:@"你得先输入别名啊哥"];
     }
@@ -94,6 +118,7 @@
 
 - (void)regiseter:(id)sender {
     [MoPushManager  registerToken];
+    
 }
 
 - (void)unRegiseter:(id)sender {
@@ -115,7 +140,22 @@
 //    [[MoPushManager shareInstance] regVendor:@"T-6af871013c324e949eaf3cc67f5a9876-0527-0" vendorToken:@"a187b15e c19cd523 0fec0326 084cfcfa a574b4ab 1503e4b3 49bfb11d b8ddc192"];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    return [textField resignFirstResponder];
+- (void)setTag:(id)sender{
+     [MoPushManager setTag:@"TAG123"];
+}
+- (void)unTag:(id)sender{
+    [MoPushManager unTag:@"TAG123"];
+}
+
+- (void)setTagAlias:(id)sender{
+    if(_textFiled.text){
+        [MoPushManager setTagWithAlias:_textFiled.text tag:@"TAG123"];
+    }
+}
+
+- (void)unTagAlias:(id)sender{
+    if(_textFiled.text){
+        [MoPushManager unTagWithAlias:_textFiled.text tag:@"TAG123"];
+    }
 }
 @end

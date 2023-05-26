@@ -1,29 +1,34 @@
 PODS:
-  - MMFrameworks/APIEncryption (2.3.68):
-    - MMFrameworks/MomoCrypto
-  - MMFrameworks/Frameworks (2.3.68)
-  - MMFrameworks/MMFoundation (2.3.68)
-  - MMFrameworks/MomoCrypto (2.3.68):
-    - MMFrameworks/Frameworks
-    - MMFrameworks/MMFoundation
-  - PhotonPushSDK (0.0.4)
+  - openssl-lib (1.0.1)
+  - PhotonHTTPDNS (1.0.8)
+  - PhotonPushSDK (1.1.6):
+    - PhotonHTTPDNS
+    - PhotonPushSDK/MMFile (= 1.1.6)
+    - PhotonPushSDK/PUSH (= 1.1.6)
+  - PhotonPushSDK/MMFile (1.1.6):
+    - PhotonHTTPDNS
+  - PhotonPushSDK/PUSH (1.1.6):
+    - PhotonHTTPDNS
 
 DEPENDENCIES:
-  - MMFrameworks/APIEncryption (= 2.3.68)
-  - MMFrameworks/MMFoundation (= 2.3.68)
-  - MMFrameworks/MomoCrypto (= 2.3.68)
-  - PhotonPushSDK (= 0.0.4)
+  - openssl-lib
+  - PhotonHTTPDNS
+  - PhotonPushSDK (from `PushSDK/`)
 
 SPEC REPOS:
-  https://git.wemomo.com/ios/Specs.git:
-    - MMFrameworks
-  https://github.com/cocoapods/specs.git:
-    - PhotonPushSDK
+  https://github.com/cosmos33/MMSpecs.git:
+    - openssl-lib
+    - PhotonHTTPDNS
+
+EXTERNAL SOURCES:
+  PhotonPushSDK:
+    :path: PushSDK/
 
 SPEC CHECKSUMS:
-  MMFrameworks: ac3a69e0aeedea7c5fe0853e05c0186b51e16731
-  PhotonPushSDK: 6ca7d87bc4b2709442a9b9b1337a9970bc407a80
+  openssl-lib: e3f61a10280caf261c0e4c6b3e720aa94825f07a
+  PhotonHTTPDNS: ca960331fc98594654483ef6885a7412a576e4c2
+  PhotonPushSDK: 2a61ff5aea4ca7ca13743dd2e4ca2dbe4c96e7ae
 
-PODFILE CHECKSUM: dced89d4764fe7a5661001f096ea831f3c4233b9
+PODFILE CHECKSUM: 82b85e6e345cab93d86e79da744e0ac5a92e96b0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.12.1

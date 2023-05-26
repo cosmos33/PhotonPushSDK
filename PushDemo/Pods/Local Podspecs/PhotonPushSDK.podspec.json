@@ -1,27 +1,36 @@
 {
   "name": "PhotonPushSDK",
-  "version": "0.0.3",
+  "version": "1.1.6",
   "license": "MIT",
   "summary": "A short description of PhotonPushSDK",
-  "homepage": "https://github.com/cosmos33/PhotonPushSDK-iOS",
+  "homepage": "https://github.com/cosmos33/PhotonPushSDK",
   "authors": "cosmos33",
   "source": {
-    "git": "https://github.com/cosmos33/PhotonPushSDK-iOS.git",
-    "tag": "0.0.3"
+    "git": "https://github.com/cosmos33/PhotonPushSDK.git",
+    "tag": "1.1.6"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "10.0"
   },
   "static_framework": true,
-  "frameworks": "CoreTelephony",
-  "vendored_frameworks": "Frameworks/pushsdk.framework",
-  "resources": "Frameworks/pushBudle.bundle",
   "libraries": [
     "stdc++",
     "z",
     "c++"
   ],
-  "xcconfig": {
-    "VALID_ARCHS": "armv7 i386 arm64 x86_64"
-  }
+  "dependencies": {
+    "PhotonHTTPDNS": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "PUSH",
+      "vendored_frameworks": "Frameworks/pushsdk.framework"
+    },
+    {
+      "name": "MMFile",
+      "vendored_frameworks": "Frameworks/MMFile.framework"
+    }
+  ]
 }
